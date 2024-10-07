@@ -1,4 +1,4 @@
-import { access, constants } from 'fs/promises';
+import { access, constants, unlink } from 'fs/promises';
 import { createReadStream, createWriteStream } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -22,7 +22,6 @@ const isExistsFile = async(fileName) => {
     }
 }
 
-//?нужно ли удалять первоначальный файл???
 const compress = async () => {
     try {
         const existFileToCompress = await isExistsFile(fileToCompress);
@@ -33,6 +32,7 @@ const compress = async () => {
         const gzip = createGzip();
         const pipe = promisify(pipeline);
         await pipe(sourse, gzip, destinatioin);
+        await unlink(fileToCompress);
         console.log('File compressed successfully!')
 
     } catch(error) {

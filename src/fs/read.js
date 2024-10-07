@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const fileToRead = join(__dirname, 'files', 'fileToRead.txt');
-console.log(fileToRead);
 
 //проверяем существование файла.
 const isExistsFile = async(fileName) => {

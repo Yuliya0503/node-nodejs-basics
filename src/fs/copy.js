@@ -17,16 +17,11 @@ const isExistsDir = async(dir) => {
     }
 }
 
-//функция копирования директории
 const copyDirectory = async (source, target) => {
     await mkdir(target, { recursive: true });
-    //читаем содержимое исходной папки
     const items = await readdir(source);
 
-
-    //!сделать через promise.all?
-    //!проверить рекурсивность
-    for(const item of items) {
+    await Promise.all(items.map(async (item) => {
         const currentSource = join(source, item);
         const currentTarget = join(target, item);
 
@@ -37,7 +32,7 @@ const copyDirectory = async (source, target) => {
         } else {
             await copyFile(currentSource, currentTarget);
         }
-    }
+    }));
 }
 
 const copy = async () => {
@@ -52,7 +47,7 @@ const copy = async () => {
         console.error('FS operation failed: files_copy already exists');
         return;
     }
-    //!добавить функцию копирования папок
+    
     await copyDirectory(sourceDir, copyDir)
     console.log('Directory copied successfully!');
 };

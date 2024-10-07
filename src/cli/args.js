@@ -4,7 +4,7 @@ const parseArgs = () => {
 
     for(let i = 0; i < args.length; i += 2){
         const propName = args[i].replace('--', '');
-        const value = args[i+1];
+        const value = args[i + 1];
         res.push(`${propName} is ${value}`);
     }
 

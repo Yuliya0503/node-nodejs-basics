@@ -7,16 +7,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const file = join(__dirname, 'files', 'script.js');
 
-
 const spawnChildProcess = async (args) => {
-    // Создаем дочерний процесс
-    const child = spawn('node', [file, ...args], {
-        stdio: ['pipe', 'pipe', 'pipe'] // Устанавливаем stdio для IPC
-    });
-    //передаем данные из родительского stdin в дочерний
-    stdin.pipe(child.stdin);
+    const child = spawn('node', [file, ...args]);
 
-    //передаем из дочернего stdout в родительский
+    stdin.pipe(child.stdin);
     child.stdout.pipe(stdout);
 
     child.stderr.on('data', (data) => {

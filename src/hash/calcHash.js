@@ -24,7 +24,6 @@ const calculateHash = async () => {
         const existFile = await isExistsFile(fileToHash);
         if (!existFile) return;
 
-        // Создаем хэш для SHA256
         const hash = createHash('sha256');
 
         const stream = createReadStream(fileToHash);

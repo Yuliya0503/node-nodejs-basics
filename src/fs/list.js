@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const filesDir = join(__dirname, 'files');
-console.log(filesDir);
 
 //проверяем существование директории.
 const isExistsDir = async(dir) => {
@@ -17,7 +16,7 @@ const isExistsDir = async(dir) => {
         return false;
     }
 }
-//!рекурсия
+
 const list = async () => {
     const existDir = await isExistsDir(filesDir);
     if (!existDir) return;

@@ -4,8 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const filesDir = join(__dirname, 'files');
-const fileToRemove = join(filesDir, 'fileToRemove.txt');
+const fileToRemove = join(__dirname, 'files', 'fileToRemove.txt');
 
 //проверяем существование файла.
 const isExistsFile = async(fileName) => {
